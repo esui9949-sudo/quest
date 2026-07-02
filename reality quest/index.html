@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Второе Тело: Система Квестов V2</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Элемент для звука -->
+    <audio id="system-sound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
+
+    <div class="system-window">
+        <!-- СТАТУС СИСТЕМЫ -->
+        <header>
+            <div class="system-alert">⚠️ СИСТЕМА УРОВНЯ 2.0 АКТИВИРОВАНА</div>
+            <h1 id="user-rank">Ранг: Загрузка...</h1>
+            
+            <!-- Полоса прогресса ранга (NEW) -->
+            <div class="lvl-bar-container">
+                <div id="lvl-bar-fill" class="lvl-bar-fill"></div>
+                <span id="lvl-bar-text">0 / 0 EXP</span>
+            </div>
+
+            <div class="stats-line">
+                <div class="stat-box">Опыт (Сегодня): <span id="total-stars">0</span> EXP</div>
+                <div class="stat-box neon-blue">Баланс EXP: <span id="wallet-stars">0</span> 🪙</div>
+            </div>
+        </header>
+
+        <!-- МГНОВЕННЫЙ КВЕСТ -->
+        <section class="reality-quest-box">
+            <div class="quest-title">⚡ СЛУЧАЙНЫЙ КВЕСТ СИСТЕМЫ</div>
+            <p id="system-quest-text">Загрузка квеста...</p>
+            <div class="quest-reward" id="quest-reward-text">Награда: +?? EXP</div>
+            <div class="quest-actions">
+                <button id="get-quest-btn" onclick="generateSystemQuest()">Получить квест</button>
+                <button id="complete-quest-btn" class="hidden" onclick="completeSystemQuest()">[ВЫПОЛНЕНО]</button>
+            </div>
+        </section>
+
+        <!-- СОЗДАНИЕ СВОИХ КВЕСТОВ -->
+        <section class="input-section">
+            <input type="text" id="task-input" placeholder="Добавить свой квест в список..." autocomplete="off">
+            <select id="task-difficulty">
+                <option value="1">🌱 D-ранг (+1 EXP)</option>
+                <option value="2">⚡ C-ранг (+2 EXP)</option>
+                <option value="3">🔥 B-ранг (+3 EXP)</option>
+            </select>
+            <button id="add-btn">Добавить</button>
+        </section>
+
+        <!-- СПИСОК ТЕКУЩИХ ЗАДАЧ -->
+        <main>
+            <h2>АКТИВНЫЕ КВЕСТЫ</h2>
+            <ul id="task-list"></ul>
+        </main>
+
+        <!-- МАГАЗИН НАВЫКОВ И НАГРАД (NEW) -->
+        <section class="shop-section">
+            <h2>🛒 МАГАЗИН НАГРАД (Покупка за EXP)</h2>
+            <div class="shop-grid">
+                <div class="shop-item">
+                    <span>🎮 1 час игр / Сериал</span>
+                    <button onclick="buyItem('Час игр', 8)">8 EXP</button>
+                </div>
+                <div class="shop-item">
+                    <span>🍕 Чит-мил / Вкусняшка</span>
+                    <button onclick="buyItem('Вкусняшка', 15)">15 EXP</button>
+                </div>
+                <div class="shop-item">
+                    <span>🛌 Час лени / Сон днем</span>
+                    <button onclick="buyItem('Час лени', 5)">5 EXP</button>
+                </div>
+            </div>
+            <div id="inventory-box" class="inventory-box">
+                <strong>🎒 Мой Инвентарь:</strong> <span id="inventory-list">Пуст</span>
+            </div>
+        </section>
+
+        <!-- ОЦЕНКА ДНЯ -->
+        <section class="evening-section">
+            <h3>ЗАВЕРШЕНИЕ ДНЯ</h3>
+            <div class="rating-buttons">
+                <button class="rate-btn" onclick="rateDay('👑 Доминирование')">👑 Доминирование</button>
+                <button class="rate-btn" onclick="rateDay('⚔️ Держал удар')">⚔️ Держал удар</button>
+                <button class="rate-btn" onclick="rateDay('💀 Проиграл бой')">💀 Проиграл бой</button>
+            </div>
+            <p id="day-result" class="day-result"></p>
+        </section>
+
+        <!-- АРХИВ -->
+        <footer class="history-section">
+            <h2>📊 ЛОГ ЗАХВАЧЕННЫХ РАЙОНОВ</h2>
+            <div id="history-calendar" class="history-calendar"></div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

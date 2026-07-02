@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #0a0b10;
+    background-image: radial-gradient(circle at 50% 50%, #141923 0%, #0a0b10 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.system-window {
+    background: rgba(16, 20, 30, 0.9);
+    border: 2px solid #00d2ff;
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.2), inset 0 0 15px rgba(0, 210, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 650px;
+    color: #ffffff;
+    animation: systemBoot 0.5s ease-out;
+}
+
+header { text-align: center; margin-bottom: 25px; }
+
+.system-alert {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff007f;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+    animation: blink 1.5s infinite;
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+    margin-bottom: 10px;
+}
+
+/* СТИЛИ LVL BAR */
+.lvl-bar-container {
+    width: 100%;
+    background: #151a26;
+    border: 1px solid #34495e;
+    height: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.lvl-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00d2ff, #00ffaa);
+    box-shadow: 0 0 10px #00d2ff;
+    transition: width 0.5s ease-in-out;
+}
+
+#lvl-bar-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+.stats-line { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
+
+.stat-box {
+    background: rgba(255, 0, 127, 0.1);
+    border: 1px solid #ff007f;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #ff007f;
+    flex: 1;
+}
+
+.stat-box.neon-blue {
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid #00d2ff;
+    color: #00d2ff;
+}
+
+/* КВЕСТ СИСТЕМЫ */
+.reality-quest-box {
+    background: linear-gradient(135deg, rgba(0, 210, 255, 0.15) 0%, rgba(13, 148, 136, 0.05) 100%);
+    border: 1px dashed #00d2ff;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.quest-title { font-family: 'Orbitron', sans-serif; color: #00d2ff; font-size: 0.9rem; margin-bottom: 8px; }
+.quest-reward { margin-top: 5px; font-size: 0.85rem; color: #55efc4; font-weight: bold; }
+.quest-actions { margin-top: 10px; }
+.quest-actions button { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
+#get-quest-btn { background: #00d2ff; color: #000; }
+#complete-quest-btn { background: #55efc4; color: #000; box-shadow: 0 0 10px #55efc4;}
+.hidden { display: none; }
+
+/* ВВОД */
+.input-section { display: flex; gap: 10px; margin-bottom: 25px; }
+#task-input { flex: 2; padding: 12px; border: 1px solid #34495e; border-radius: 10px; background: #151a26; color: white; outline: none; }
+#task-input:focus { border-color: #00d2ff; }
+#task-difficulty { padding: 12px; border: 1px solid #34495e; border-radius: 10px; background: #151a26; color: white; cursor: pointer; }
+#add-btn { padding: 12px 20px; border: none; background: #00d2ff; color: black; font-weight: bold; border-radius: 10px; cursor: pointer; }
+
+h2 { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; color: #a4b0be; margin-bottom: 12px; letter-spacing: 1px; }
+
+#task-list { list-style: none; margin-bottom: 25px; }
+.task-item { background: #151a26; border-left: 4px solid #00d2ff; padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.task-item.completed { opacity: 0.4; border-left-color: #55efc4; text-decoration: line-through; }
+.task-buttons button { border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-left: 5px; }
+.done-btn { background: #55efc4; color: black; }
+.delete-btn { background: #ff007f; color: white; }
+
+/* МАГАЗИН И ИНВЕНТАРЬ */
+.shop-section { background: #111622; border: 1px solid #1f2738; padding: 15px; border-radius: 12px; margin-bottom: 25px; }
+.shop-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.shop-item { display: flex; justify-content: space-between; align-items: center; background: #1c2333; padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; }
+.shop-item button { background: #ffaa00; border: none; color: black; padding: 5px 10px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+.shop-item button:hover { background: #ffcc00; }
+.inventory-box { font-size: 0.85rem; border-top: 1px dashed #34495e; padding-top: 10px; color: #55efc4; }
+
+/* ВЕЧЕР */
+.evening-section { background: #111622; border: 1px solid #1f2738; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 25px; }
+.rate-btn { padding: 8px 12px; border: none; border-radius: 6px; background: #1c2333; color: white; cursor: pointer; margin: 5px; font-size: 0.85rem; }
+.rate-btn:hover { background: #ff007f; }
+.day-result { color: #00d2ff; font-weight: bold; margin-top: 10px; font-size: 0.9rem;}
+
+/* АРХИВ */
+.history-calendar { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; max-height: 150px; overflow-y: auto; }
+.history-card { background: #151a26; padding: 10px; border-radius: 8px; text-align: center; border-bottom: 3px solid #ff007f; }
+.history-card .date { font-size: 0.75rem; color: #747d8c; }
+.history-card .stars { font-size: 1rem; color: #ff007f; font-weight: bold; }
+.history-card .mood { font-size: 0.75rem; color: #00d2ff; }
+
+/* ИДЕАЛЬНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ */
+@media (max-width: 500px) {
+    body { padding: 10px; }
+    .system-window { padding: 20px 15px; border-radius: 15px; }
+    header h1 { font-size: 1.4rem; }
+    .stats-line { gap: 8px; }
+    .stat-box { font-size: 0.75rem; padding: 6px 10px; text-align: center; }
+    .input-section { flex-direction: column; gap: 8px; }
+    #task-input, #task-difficulty, #add-btn { width: 100%; }
+    .rating-buttons { flex-direction: column; gap: 6px; }
+    .rate-btn { width: 100%; margin: 0; }
+    .history-calendar { grid-template-columns: repeat(2, 1fr); }
+}
+
+@keyframes systemBoot { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
